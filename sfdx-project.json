@@ -1,0 +1,11 @@
+{
+  "packageDirectories": [
+    {
+      "path": "./force-app",
+      "default": true
+    }
+  ],
+  "namespace": "",
+  "sfdcLoginUrl": "https://eu29.lightning.force.com",
+  "sourceApiVersion": "47.0"
+}
