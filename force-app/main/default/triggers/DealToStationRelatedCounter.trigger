@@ -11,13 +11,9 @@ trigger DealToStationRelatedCounter on Deal__c (after insert, after delete) {
     }
     if(mapStationIdDealCount.size() > 0) {
         List<Supply_Station__c> listStations = [SELECT Id, Deals_Number__c FROM Supply_Station__c WHERE Id IN : mapStationIdDealCount.keySet()];
-        System.debug(listStations);
-        System.debug(listStations[0].Deals_Number__c);
         for(Supply_Station__c station : listStations) {
             station.Deals_Number__c += mapStationIdDealCount.get(station.Id);
         }
-        System.debug(listStations[0].Deals_Number__c);
-        
         update listStations;
     }
 }
