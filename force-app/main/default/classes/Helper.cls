@@ -1,22 +1,23 @@
 public with sharing class Helper {
-    public static void supplyStationNewDealsCounterHelper(Deal__c insertedDeal, map<Id, Integer> mapStationIdDealCount){
-            if(insertedDeal.Supplier__c!=null){
-            if(!mapStationIdDealCount.containsKey(insertedDeal.Supplier__c)) {
-                    mapStationIdDealCount.put(insertedDeal.Supplier__c, 1);
-                } else {
-                    mapStationIdDealCount.put(insertedDeal.Supplier__c, mapStationIdDealCount.get(insertedDeal.Supplier__c) + 1);
-                }
+    public static void supplyStationNewDealsCounterHelper(List<Deal__c> insertedDeals, List<Deal__c> deletedDeals){
+        Set<Id> StationsIdSet = new Set<Id>();
+        List<Supply_Station__c> StationsForUpdate = new List<Supply_Station__c>();
+        if(insertedDeals!=null && insertedDeals.size()>0){
+            for(Deal__c newDeal : insertedDeals){
+                StationsIdSet.add(newDeal.Supplier__c);
             }
-    }
-    
-    public static void supplyStationOldDealsCounterHelper(Deal__c deletedDeal, map<Id, Integer> mapStationIdDealCount){
-            if(deletedDeal.Supplier__c!=null){
-            if(!mapStationIdDealCount.containsKey(deletedDeal.Supplier__c)) {
-                mapStationIdDealCount.put(deletedDeal.Supplier__c, -1);
-            } else {
-                mapStationIdDealCount.put(deletedDeal.Supplier__c, mapStationIdDealCount.get(deletedDeal.Supplier__c) - 1);
-                }
+        }
+        if(deletedDeals!=null && deletedDeals.size()>0){
+            for(Deal__c removedDeal : deletedDeals){
+                StationsIdSet.add(removedDeal.Supplier__c);
             }
+        }
+        List<Supply_Station__c> stations = [SELECT Id, Name,(SELECT Id FROM Deals__r) FROM Supply_Station__c WHERE ID IN : StationsIdSet];
+        for(Supply_Station__c station : stations){
+            station.Deals_Number__c = station.Deals__r.size();
+            StationsForUpdate.add(station);
+        }
+
+        update StationsForUpdate;
     }
-}
 }
