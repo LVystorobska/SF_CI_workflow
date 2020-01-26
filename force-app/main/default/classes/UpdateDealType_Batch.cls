@@ -1,4 +1,4 @@
-global class UpdateDealType implements Database.Batchable<sObject>, Database.Stateful {
+global class UpdateDealType_Batch implements Database.Batchable<sObject>, Database.Stateful {
     global Integer recordsUpdated = 0;
     global Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator(

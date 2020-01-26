@@ -1,4 +1,4 @@
-public with sharing class Helper {
+public with sharing class TriggerHelper {
     public static void supplyStationNewDealsCounterHelper(List<Deal__c> insertedDeals, List<Deal__c> deletedDeals){
         Set<Id> StationsIdSet = new Set<Id>();
         List<Supply_Station__c> StationsForUpdate = new List<Supply_Station__c>();
@@ -14,8 +14,12 @@ public with sharing class Helper {
         }
         List<Supply_Station__c> stations = [SELECT Id, Name,(SELECT Id FROM Deals__r) FROM Supply_Station__c WHERE ID IN : StationsIdSet];
         for(Supply_Station__c station : stations){
+            if(station.Deals__r!=null){
             station.Deals_Number__c = station.Deals__r.size();
             StationsForUpdate.add(station);
+            } else {
+                continue;
+            }
         }
 
         update StationsForUpdate;
