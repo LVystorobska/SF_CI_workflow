@@ -15,8 +15,4 @@ public with sharing class AnimalDataRetriever {
             return null;
         }
     }
-
-    public static void getAndStoreAllAnimalsData(){
-        
-    }
 }
