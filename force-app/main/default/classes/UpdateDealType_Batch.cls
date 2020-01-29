@@ -11,7 +11,7 @@ global class UpdateDealType_Batch implements Database.Batchable<sObject>, Databa
             for (Deal__c deal : customer.deals__r) {
                 deal.Type__c = 'Blackout';
                 deals.add(deal);
-                recordsUpdated = recordsUpdated + 1;
+                recordsUpdated += 1;
             }
         }
         update deals;
