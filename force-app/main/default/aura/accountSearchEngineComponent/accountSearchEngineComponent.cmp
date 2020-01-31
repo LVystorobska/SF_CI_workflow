@@ -2,17 +2,24 @@
     <aura:attribute name="accountName" type="String"/>
 	<lightning:input name="input" value="{!v.accountName}" placeholder="type your account name..." label="Account to search" />
      <aura:attribute name="accounts" type="Account[]"/>
-   		
     <lightning:button label="search" onclick="{!c.provideSearchAction}"/>
-     <ol>
-         <aura:iteration items="{!v.accounts}" var="account">
-             <li>
-                 <p>{!account.Name}</p>
-                 <ul>
-                     <li>{!account.Phone}</li>
-                 	 <li>{!account.Description}</li>
-                 </ul>
-             </li>
+    
+  <table class="tableZone">
+  <tr>
+    <th>Name</th>
+    <th>Phone</th> 
+    <th>Description</th>
+    <th>Industry</th>
+    <th>Rating</th>
+  </tr>
+       <aura:iteration items="{!v.accounts}" var="account">
+             <tr>
+                 <th>{!account.Name}</th>
+                 <th>{!account.Phone}</th>
+                 <th>{!account.Description}</th>
+                 <th>{!account.Industry}</th>
+                 <th>{!account.Rating}</th>
+              </tr>
          </aura:iteration>
-     </ol>
+    </table>
 </aura:component>
