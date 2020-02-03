@@ -1,5 +1,4 @@
-table.THIS {
-    width: 50%;
-    border: 1px solid black;
-    background-color:  #ccc;
+.THIS .slds-table {
+    background-color: #eee;
+    
 }

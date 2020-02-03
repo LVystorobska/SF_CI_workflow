@@ -1,25 +1,9 @@
-<aura:component controller="ServerSideControllerForAccount">
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="ServerSideControllerForAccount" >
     <aura:attribute name="accountName" type="String"/>
-	<lightning:input name="input" value="{!v.accountName}" placeholder="type your account name..." label="Account to search" />
+	<lightning:input name="input" value="{!v.accountName}" placeholder="type your account name..." label="Account to search" messageWhenBadInput="You must say foo"  />
      <aura:attribute name="accounts" type="Account[]"/>
+    <aura:attribute name="mycolumns" type="List"/>
     <lightning:button label="search" onclick="{!c.provideSearchAction}"/>
-    
-  <table class="tableZone">
-  <tr>
-    <th>Name</th>
-    <th>Phone</th> 
-    <th>Description</th>
-    <th>Industry</th>
-    <th>Rating</th>
-  </tr>
-       <aura:iteration items="{!v.accounts}" var="account">
-             <tr>
-                 <th>{!account.Name}</th>
-                 <th>{!account.Phone}</th>
-                 <th>{!account.Description}</th>
-                 <th>{!account.Industry}</th>
-                 <th>{!account.Rating}</th>
-              </tr>
-         </aura:iteration>
-    </table>
+
+        <lightning:datatable data="{!v.accounts }" columns="{!v.mycolumns }" keyField="id" hideCheckboxColumn="true" />
 </aura:component>
