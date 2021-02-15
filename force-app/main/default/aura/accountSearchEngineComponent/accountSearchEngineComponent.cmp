@@ -1,9 +1,0 @@
-<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="ServerSideControllerForAccount" >
-    <aura:attribute name="accountName" type="String"/>
-	<lightning:input name="input" value="{!v.accountName}" placeholder="type your account name..." label="Account to search" messageWhenBadInput="You must say foo"  />
-     <aura:attribute name="accounts" type="Account[]"/>
-    <aura:attribute name="mycolumns" type="List"/>
-    <lightning:button label="search" onclick="{!c.provideSearchAction}"/>
-
-        <lightning:datatable data="{!v.accounts }" columns="{!v.mycolumns }" keyField="id" hideCheckboxColumn="true" />
-</aura:component>
