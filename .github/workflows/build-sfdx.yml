@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2    
-      - run: ./sfdx-build.sh          
+      - run: ${GITHUB_WORKSPACE}/.github/sfdx-build.sh          
 #       - name: Write the token into a file
 #         run: 'echo ${{ secrets.DEVHUB_TOKEN}} > token.txt'
 #       - name: Install Salesforce CLI
