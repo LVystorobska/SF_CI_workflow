@@ -1,6 +1,6 @@
         
 echo ${{ secrets.DEVHUB_TOKEN}} > token.txt
-| wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
 mkdir sfdx-cli
 tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
 ./sfdx-cli/install
