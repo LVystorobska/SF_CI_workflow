@@ -10,3 +10,4 @@ sfdx force:source:push -u my-scratch
 sfdx force:org:list
 sfdx force:apex:test:run -u my-scratch --resultformat human
 sfdx force:org:delete -u my-scratch --noprompt
+echo 'Bash end'
