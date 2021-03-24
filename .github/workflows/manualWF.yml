@@ -1,6 +1,8 @@
 name: Manually triggered workflow
 on:
   workflow_dispatch:
+    tags:
+    - '*productionDebug*'
     inputs:
       name:
         description: 'Person to greet'
